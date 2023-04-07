@@ -1,0 +1,21 @@
+{
+  "name": "enphase-solar",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "NODE_TLS_REJECT_UNAUTHORIZED=0 && node index.js",
+    "fix": "npx prettier . --write"
+  },
+  "author": "Thomas Steiner (steiner.thomas@gmail.com)",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "eventsource": "^2.0.2",
+    "node-fetch": "^3.3.1"
+  },
+  "devDependencies": {
+    "prettier": "^2.8.7",
+    "puppeteer": "^19.8.5"
+  }
+}
