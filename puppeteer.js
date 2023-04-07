@@ -7,20 +7,20 @@ import { getToken } from './authentication.js';
 
   const browser = await puppeteer.launch({
     headless: false, //'new'
-    args: [ '--ignore-certificate-errors' ]
+    args: ['--ignore-certificate-errors'],
   });
   const page = await browser.newPage();
   await page.setCacheEnabled(false);
 
   await page.goto(`https://${LOCAL_IP}/home#auth`);
-  await page.waitForSelector('#jwtbox')
+  await page.waitForSelector('#jwtbox');
   await page.type('#jwtbox', token);
 
   await page.click('#enterjwt');
   await page.waitForNavigation();
 
   await page.setRequestInterception(true);
-  page.on('request', request => {
+  page.on('request', (request) => {
     if (request.resourceType() === 'script') {
       request.abort();
     } else {
