@@ -1,0 +1,69 @@
+html {
+  box-sizing: border-box;
+  font-family: system-ui, sans-serif;
+  color-scheme: dark light;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 1rem;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    'producing producing'
+    'net consuming';
+}
+
+.producing {
+  grid-area: producing;
+}
+
+.net {
+  grid-area: net;
+}
+
+.consuming {
+  grid-area: consuming;
+}
+
+.producing,
+.net,
+.consuming {
+  font-weight: bold;
+  text-align: center;
+  font-variant: tabular-nums;
+}
+
+.producing {
+  color: #01b4de;
+}
+
+.consuming {
+  color: #f37320;
+}
+
+.net {
+  color: #6b7073;
+}
+
+h2 {
+  color: #6b7073;
+  font-size: 1rem;
+  font-weight: normal;
+  margin-block: 0;
+}
+
+p {
+  margin-block: 0;
+}

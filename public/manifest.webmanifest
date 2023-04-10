@@ -1,0 +1,14 @@
+{
+  "name": "Baseline PWA",
+  "short_name": "PWA",
+  "start_url": "./",
+  "id": "./",
+  "icons": [
+    {
+      "src": "https://cdn.glitch.me/d0334cc3-be72-47b5-a25f-d3fbe953f5ff%2Fapple-touch-icon.png?v=1636974061118",
+      "type": "image/png",
+      "sizes": "257x257"
+    }
+  ],
+  "display": "standalone"
+}

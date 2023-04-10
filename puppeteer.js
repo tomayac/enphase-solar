@@ -6,7 +6,7 @@ import { getToken } from './authentication.js';
   const token = await getToken();
 
   const browser = await puppeteer.launch({
-    headless: false, //'new'
+    headless: 'new', // false
     args: ['--ignore-certificate-errors'],
   });
   const page = await browser.newPage();

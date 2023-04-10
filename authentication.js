@@ -1,25 +1,26 @@
 import fetch from 'node-fetch';
-import { USER, PASSWORD, ENVOY_SERIAL } from './index.js';
+import { USERNAME, PASSWORD, ENVOY_SERIAL } from './index.js';
+
+const ENPHASE_LOGIN_URL =
+  'https://enlighten.enphaseenergy.com/login/login.json';
+const ENPHASE_TOKEN_URL = 'https://entrez.enphaseenergy.com/tokens';
 
 async function getToken() {
-  const loginResponse = await fetch(
-    'https://enlighten.enphaseenergy.com/login/login.json?',
-    {
-      method: 'POST',
-      body: `user[email]=${USER}&user[password]=${PASSWORD}`,
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    },
-  );
+  const loginResponse = await fetch(ENPHASE_LOGIN_URL, {
+    method: 'POST',
+    body: `user[email]=${USERNAME}&user[password]=${PASSWORD}`,
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+  });
 
   const loginResponseData = await loginResponse.json();
 
   const tokenData = {
     session_id: loginResponseData.session_id,
     serial_num: ENVOY_SERIAL,
-    username: USER,
+    username: USERNAME,
   };
 
-  const tokenResponse = await fetch('https://entrez.enphaseenergy.com/tokens', {
+  const tokenResponse = await fetch(ENPHASE_TOKEN_URL, {
     method: 'POST',
     body: JSON.stringify(tokenData),
     headers: { 'Content-Type': 'application/json' },
