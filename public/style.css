@@ -16,13 +16,14 @@ body {
 
 .container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
-    'producing producing'
-    'net consuming';
+    'producing producing producing producing'
+    'net producing-grid-animation producing-consuming-animation consuming'
+    'net grid-consuming-animation grid-consuming-animation consuming';
 }
 
 .producing {
@@ -37,11 +38,31 @@ body {
   grid-area: consuming;
 }
 
+.grid-consuming-animation {
+  grid-area: grid-consuming-animation;
+}
+
+.producing-grid-animation {
+  grid-area: producing-grid-animation;
+}
+
+.producing-consuming-animation {
+  grid-area: producing-consuming-animation;
+}
+
+.producing,
+.net,
+.consuming,
+.producing-grid-animation,
+.producing-consuming-animation,
+.grid-consuming-animation {
+  text-align: center;
+}
+
 .producing,
 .net,
 .consuming {
   font-weight: bold;
-  text-align: center;
   font-variant: tabular-nums;
 }
 

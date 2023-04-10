@@ -1,7 +1,16 @@
 const consumingValue = document.querySelector('.consuming-value');
 const producingValue = document.querySelector('.producing-value');
 const netValue = document.querySelector('.net-value');
-const exportingOrImportingElem = document.querySelector(
+const producingGridAnimation = document.querySelector(
+  '.producing-grid-animation',
+);
+const gridConsumingAnimation = document.querySelector(
+  '.grid-consuming-animation',
+);
+const producingConsumingAnimation = document.querySelector(
+  '.producing-consuming-animation',
+);
+const exportingOrImportingHeading = document.querySelector(
   '.exporting-or-importing',
 );
 
@@ -12,7 +21,14 @@ const formatNumber = (number) => {
 const eventSource = new EventSource('/stream/meter');
 
 eventSource.addEventListener('error', (e) => {
-  console.error(e.name, e.message);
+  console.error('Connection to event source at', e.target.url, 'lost');
+  exportingOrImportingHeading.textContent = 'Grid';
+  consumingValue.textContent = 'N/A';
+  producingValue.textContent = 'N/A';
+  netValue.textContent = 'N/A';
+  producingGridAnimation.textContent = '';
+  gridConsumingAnimation.textContent = '';
+  producingConsumingAnimation.textContent = '';
 });
 
 eventSource.addEventListener('open', (e) => {
@@ -25,9 +41,24 @@ eventSource.addEventListener('readings', (e) => {
   consumingValue.textContent = formatNumber(consuming);
   producingValue.textContent = formatNumber(producing);
   netValue.textContent = formatNumber(net);
-  if (net < 0) {
-    exportingOrImportingElem.textContent = 'Exporting';
+
+  if (producing > 0 && consuming > 0) {
+    producingConsumingAnimation.textContent = '→';
   } else {
-    exportingOrImportingElem.textContent = 'Importing';
+    producingConsumingAnimation.textContent = '';
+  }
+
+  if (producing > 0 && net < 0) {
+    producingGridAnimation.textContent = '←';
+  } else {
+    producingGridAnimation.textContent = '';
+  }
+
+  if (net < 0) {
+    exportingOrImportingHeading.textContent = 'Exporting';
+    gridConsumingAnimation.textContent = '';
+  } else {
+    exportingOrImportingHeading.textContent = 'Importing';
+    gridConsumingAnimation.textContent = '→';
   }
 });
