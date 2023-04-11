@@ -1,3 +1,5 @@
+import { setWebLightColor } from './weblight.js';
+
 const consumingValue = document.querySelector('.consuming-value');
 const producingValue = document.querySelector('.producing-value');
 const netValue = document.querySelector('.net-value');
@@ -35,7 +37,9 @@ eventSource.addEventListener('open', (e) => {
   console.log('Connected to event source at', e.target.url);
 });
 
-eventSource.addEventListener('readings', (e) => {
+let isEven = true;
+eventSource.addEventListener('readings', async (e) => {
+  isEven = !isEven;
   const data = JSON.parse(e.data);
   const { producing, net, consuming } = data;
   consumingValue.textContent = formatNumber(consuming);
@@ -57,8 +61,17 @@ eventSource.addEventListener('readings', (e) => {
   if (net < 0) {
     exportingOrImportingHeading.textContent = 'Exporting';
     gridConsumingAnimation.textContent = '';
+    if (isEven) {
+      await setWebLightColor(0, 64, 0);
+    }
   } else {
     exportingOrImportingHeading.textContent = 'Importing';
     gridConsumingAnimation.textContent = '→';
+    if (isEven) {
+      await setWebLightColor(64, 0, 0);
+    }
+  }
+  if (!isEven) {
+    await setWebLightColor(0, 0, 0);
   }
 });
