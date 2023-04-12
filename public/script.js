@@ -31,6 +31,10 @@ eventSource.addEventListener('error', (e) => {
   producingGridAnimation.textContent = '';
   gridConsumingAnimation.textContent = '';
   producingConsumingAnimation.textContent = '';
+  setWebLightColor(0, 0, 0);
+  setTimeout(() => {
+    window.location.reload();
+  }, 30_000);
 });
 
 eventSource.addEventListener('open', (e) => {
