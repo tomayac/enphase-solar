@@ -2,10 +2,18 @@ const webLightButton = document.querySelector('.weblight-button');
 
 let webLight;
 
+(async () => {
+  const [_device] = await navigator.usb.getDevices();
+  if (_device?.vendorId === 0x1209 && _device?.productId === 0xa800) {
+    webLight = _device;
+    await webLight.open();
+  }
+})()
+
 webLightButton.addEventListener('click', async () => {
   const filters = [{ vendorId: 0x1209, productId: 0xa800 }];
   try {
-    let _device = await navigator.usb.requestDevice({ filters: filters });
+    const _device = await navigator.usb.requestDevice({ filters: filters });
     webLight = _device;
     await webLight.open();
     if (webLight.configuration === null) {
