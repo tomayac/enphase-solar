@@ -1,4 +1,6 @@
 import express from 'express';
+import ViteExpress from "vite-express";
+
 import { getToken } from './authentication.js';
 import fetch from 'node-fetch';
 import * as dotenv from 'dotenv';
@@ -16,7 +18,7 @@ app.get('/stream/meter', (req, res) => {
   sse.init(req, res);
 });
 
-app.listen(PORT, () => {
+ViteExpress.listen(app, PORT, () => {
   console.log(`Enphase Solar app listening on port ${PORT}`);
 });
 

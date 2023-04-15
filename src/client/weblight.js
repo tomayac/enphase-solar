@@ -8,7 +8,7 @@ let webLight;
     webLight = _device;
     await webLight.open();
   }
-})()
+})();
 
 webLightButton.addEventListener('click', async () => {
   const filters = [{ vendorId: 0x1209, productId: 0xa800 }];

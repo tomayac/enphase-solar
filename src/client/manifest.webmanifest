@@ -1,0 +1,14 @@
+{
+  "name": "Enphase Solar",
+  "short_name": "Enphase",
+  "start_url": "/",
+  "id": "/",
+  "icons": [
+    {
+      "src": "/icon.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "display": "standalone"
+}
