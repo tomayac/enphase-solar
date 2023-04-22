@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon src/server/index.js -w src/server",
-    "start": "NODE_ENV=production node src/server/main.js",
+    "start": "NODE_ENV=production && npm run dev",
     "build": "vite build",
     "fix": "npx prettier . --write"
   },
@@ -14,9 +14,11 @@
   "dependencies": {
     "@fnando/sparkline": "^0.3.10",
     "@gazdagandras/express-sse": "^0.5.7",
+    "@sqlite.org/sqlite-wasm": "^3.41.2-build11",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "node-fetch": "^3.3.1",
+    "plotly.js-dist-min": "^2.21.0",
     "ssestream": "^1.1.0"
   },
   "devDependencies": {

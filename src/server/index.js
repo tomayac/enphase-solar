@@ -1,13 +1,39 @@
 import express from 'express';
-import ViteExpress from "vite-express";
+import ViteExpress from 'vite-express';
 
 import { getToken } from './authentication.js';
 import fetch from 'node-fetch';
 import * as dotenv from 'dotenv';
 import SSE from '@gazdagandras/express-sse';
 
+/*
+import sqlite3InitModule from '@sqlite.org/sqlite-wasm';
+
+const log = (...args) => console.log(...args);
+const error = (...args) => console.error(...args);
+
+const start = function (sqlite3) {
+  log('Running SQLite3 version', sqlite3.version.libVersion);
+  const db = new sqlite3.oo1.DB('/mydb.sqlite3', 'ct');
+  // Your SQLite code here.
+};
+
+log('Loading and initializing SQLite3 module...');
+sqlite3InitModule({
+  print: log,
+  printErr: error,
+}).then((sqlite3) => {
+  try {
+    log('Done initializing. Running demo...');
+    start(sqlite3);
+  } catch (err) {
+    error(err.name, err.message);
+  }
+});
+*/
+
 dotenv.config();
-const { USERNAME, PASSWORD, ENVOY_SERIAL, LOCAL_IP, PORT } = process.env;
+const { USERNAME, PASSWORD, ENVOY_SERIAL, LOCAL_IP, PORT, HOST } = process.env;
 
 const app = express();
 const sse = new SSE();
@@ -18,9 +44,10 @@ app.get('/stream/meter', (req, res) => {
   sse.init(req, res);
 });
 
-ViteExpress.listen(app, PORT, () => {
-  console.log(`Enphase Solar app listening on port ${PORT}`);
-});
+const server = app.listen(PORT, HOST, () =>
+  console.log(`Enphase Solar app listening on ${HOST}:${PORT}`),
+);
+ViteExpress.bind(app, server);
 
 const token = await getToken();
 

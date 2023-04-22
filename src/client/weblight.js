@@ -1,4 +1,6 @@
-const webLightButton = document.querySelector('.weblight-button');
+import { webLightButton } from './domrefs.js';
+
+webLightButton.hidden = false;
 
 let webLight;
 
