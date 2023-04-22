@@ -1,1 +1,0 @@
-let e=null;(async()=>await(async()=>{try{e=await navigator.wakeLock.request(),e.addEventListener("release",()=>{console.log("Screen Wake Lock released:",e.released)}),console.log("Screen Wake Lock released:",e.released)}catch(a){console.error(`${a.name}, ${a.message}`)}})())();

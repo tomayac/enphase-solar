@@ -1,1 +1,0 @@
-import{p as i,l as e,a as n}from"./index-a6511b60.js";i.hidden=!1;i.addEventListener("click",async()=>{const t=await documentPictureInPicture.requestWindow({initialAspectRatio:e.clientWidth/e.clientHeight,copyStyleSheets:!0});t.document.body.append(e),t.addEventListener("unload",a=>{n.append(e)})});
