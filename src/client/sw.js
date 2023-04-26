@@ -1,10 +1,10 @@
-self.addEventListener('install', (event) => {
+self.addEventListener('install', (e) => {
   self.skipWaiting();
 });
 
-self.addEventListener('activate', (event) => {
+self.addEventListener('activate', (e) => {
   self.clients.claim();
-  event.waitUntil(
+  e.waitUntil(
     (async () => {
       if ('navigationPreload' in self.registration) {
         await self.registration.navigationPreload.enable();
@@ -13,15 +13,15 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-self.addEventListener('fetch', (event) => {
-  event.respondWith(
+self.addEventListener('fetch', (e) => {
+  e.respondWith(
     (async () => {
       try {
-        const response = await event.preloadResponse;
+        const response = await e.preloadResponse;
         if (response) {
           return response;
         }
-        return fetch(event.request);
+        return fetch(e.request);
       } catch {
         return new Response('Offline');
       }

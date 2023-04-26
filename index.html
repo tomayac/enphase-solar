@@ -11,13 +11,17 @@
       if (!isSecureContext) location.protocol = 'https:';
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', async () => {
-          const registration = await navigator.serviceWorker.register(
-            '/src/client/sw.js',
-          );
-          console.log(
-            'Service worker registered for scope',
-            registration.scope,
-          );
+          try {
+            const registration = await navigator.serviceWorker.register(
+              '/src/client/sw.js',
+            );
+            console.log(
+              'Service worker registered for scope',
+              registration.scope,
+            );
+          } catch (error) {
+            console.error('Service worker registration failed.', error.name, error.message);
+          }
         });
       }
     </script>
