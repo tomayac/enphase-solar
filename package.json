@@ -14,17 +14,17 @@
   "dependencies": {
     "@fnando/sparkline": "^0.3.10",
     "@gazdagandras/express-sse": "^0.5.7",
-    "@sqlite.org/sqlite-wasm": "^3.41.2-build11",
+    "@sqlite.org/sqlite-wasm": "^3.41.2-build13",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "node-fetch": "^3.3.1",
-    "plotly.js-dist-min": "^2.21.0",
+    "plotly.js-dist-min": "^2.22.0",
     "ssestream": "^1.1.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.22",
-    "prettier": "^2.8.7",
-    "puppeteer": "^19.8.5",
-    "vite-express": "^0.5.3"
+    "prettier": "^2.8.8",
+    "puppeteer": "^20.1.2",
+    "vite-express": "^0.6.0"
   }
 }
