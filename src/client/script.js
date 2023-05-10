@@ -1,4 +1,5 @@
 
+import './style.css'
 import './sse.js';
 
 if ('wakeLock' in navigator) {
