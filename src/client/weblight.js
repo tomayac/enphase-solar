@@ -4,13 +4,22 @@ webLightButton.hidden = false;
 
 let webLight;
 
-(async () => {
-  const [_device] = await navigator.usb.getDevices();
-  if (_device?.vendorId === 0x1209 && _device?.productId === 0xa800) {
-    webLight = _device;
-    await webLight.open();
+const reconnectWebLight = async () => {
+  const devices = await navigator.usb.getDevices();
+  for (const device of devices) {
+    if (device.vendorId === 0x1209 && device.productId === 0xa800) {
+      webLight = device;
+      await webLight.open();
+      break;
+    }
   }
-})();
+};
+
+document.addEventListener('visibilitychange', async () => {
+  if (!document.hidden) {
+    await reconnectWebLight();
+  }
+});
 
 webLightButton.addEventListener('click', async () => {
   const filters = [{ vendorId: 0x1209, productId: 0xa800 }];
@@ -45,5 +54,7 @@ const setWebLightColor = async (r, g, b) => {
     );
   }
 };
+
+reconnectWebLight();
 
 export { setWebLightColor };
