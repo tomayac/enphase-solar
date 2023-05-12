@@ -21,6 +21,10 @@ document.addEventListener('visibilitychange', async () => {
   }
 });
 
+setInterval(async () => {
+  await reconnectWebLight();
+}, 10_000);
+
 webLightButton.addEventListener('click', async () => {
   const filters = [{ vendorId: 0x1209, productId: 0xa800 }];
   try {

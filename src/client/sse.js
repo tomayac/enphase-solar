@@ -11,6 +11,8 @@ import {
   consumingSparkline,
   importingSparkline,
   exportingSparkline,
+  ledRed,
+  ledGreen,
 } from './domrefs.js';
 
 const TREND_HISTORY_LENGTH = 60 * 5;
@@ -85,6 +87,14 @@ eventSource.addEventListener('readings', (e) => {
   sparkline(consumingSparkline, trendHistory.consuming);
   sparkline(exportingSparkline, trendHistory.exporting);
   sparkline(importingSparkline, trendHistory.importing);
+
+  if (producing > consuming) {
+    ledGreen.style.display = 'inline-block';
+    ledRed.style.display = 'none';
+  } else {
+    ledGreen.style.display = 'none';
+    ledRed.style.display = 'inline-block';
+  }
 
   if (producing > 0 && consuming > 0) {
     producingConsumingAnimation.textContent = '→';

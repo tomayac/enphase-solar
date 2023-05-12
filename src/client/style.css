@@ -112,3 +112,55 @@ p {
 .importing-sparkline {
   stroke: var(--net-color);
 }
+
+.led-red {
+  display: inline-block;
+  margin: 0 auto;
+  width: 24px;
+  height: 24px;
+  background-color: #ff0000;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px,
+    rgba(255, 0, 0, 0.5) 0 2px 12px;
+  animation: blink-red 1.5s infinite;
+}
+
+.led-green {
+  display: inline-block;
+  margin: 0 auto;
+  width: 24px;
+  height: 24px;
+  background-color: #abff00;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #304701 0 -1px 9px,
+    #89ff00 0 2px 12px;
+  animation: blink-green 1.5s infinite;
+}
+
+@keyframes blink-red {
+  from {
+    background-color: #ff0000;
+  }
+  50% {
+    background-color: rgb(81, 3, 10);
+    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px,
+      rgba(56, 1, 1, 0.5) 0 2px 0;
+  }
+  to {
+    background-color: #ff0000;
+  }
+}
+
+@keyframes blink-green {
+  from {
+    background-color: #abff00;
+  }
+  50% {
+    background-color: rgb(3, 65, 26);
+    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px,
+      rgba(2, 92, 26, 0.5) 0 2px 0;
+  }
+  to {
+    background-color: #abff00;
+  }
+}

@@ -3,8 +3,10 @@ import { liveContainer, liveSection, pipButton } from './domrefs.js';
 pipButton.hidden = false;
 
 pipButton.addEventListener('click', async () => {
-  const pipWindowWidth = localStorage.getItem('pipWindowWidth') || liveSection.clientWidth;
-  const pipWindowHeight = localStorage.getItem('pipWindowHeight') || liveSection.clientHeight;
+  const pipWindowWidth =
+    localStorage.getItem('pipWindowWidth') || liveSection.clientWidth;
+  const pipWindowHeight =
+    localStorage.getItem('pipWindowHeight') || liveSection.clientHeight;
   const pipWindow = await documentPictureInPicture.requestWindow({
     width: pipWindowWidth,
     height: pipWindowHeight,

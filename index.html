@@ -20,7 +20,11 @@
               registration.scope,
             );
           } catch (error) {
-            console.error('Service worker registration failed.', error.name, error.message);
+            console.error(
+              'Service worker registration failed.',
+              error.name,
+              error.message,
+            );
           }
         });
       }
@@ -32,7 +36,10 @@
       <h1>Enphase Solar</h1>
       <section class="live-container">
         <div class="live-section">
-          <h2>Live Status</h2>
+          <h2>
+            Live Status <span class="led-red"></span
+            ><span class="led-green"></span>
+          </h2>
 
           <div class="container">
             <div class="producing">

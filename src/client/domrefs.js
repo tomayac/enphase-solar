@@ -21,6 +21,8 @@ const producingSparkline = document.querySelector('.producing-sparkline');
 const consumingSparkline = document.querySelector('.consuming-sparkline');
 const importingSparkline = document.querySelector('.importing-sparkline');
 const exportingSparkline = document.querySelector('.exporting-sparkline');
+const ledRed = document.querySelector('.led-red');
+const ledGreen = document.querySelector('.led-green');
 
 export {
   consumingValue,
@@ -38,4 +40,6 @@ export {
   consumingSparkline,
   importingSparkline,
   exportingSparkline,
+  ledRed,
+  ledGreen,
 };
