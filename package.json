@@ -24,7 +24,6 @@
   "devDependencies": {
     "nodemon": "^2.0.22",
     "prettier": "^2.8.8",
-    "puppeteer": "^20.1.2",
     "vite-express": "^0.6.0"
   }
 }
