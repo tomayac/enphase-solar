@@ -12,7 +12,7 @@ pipButton.addEventListener('click', async () => {
     height: pipWindowHeight,
   });
   // Copy style sheets over from the initial document
-  // so that the player looks the same.
+  // so that the PiP window looks the same.
   const allCSS = [...document.styleSheets]
     .map((styleSheet) => {
       try {
