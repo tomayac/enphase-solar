@@ -27,8 +27,8 @@ monitor.
 ## WebLight integration
 
 If you own a [WebLight](https://github.com/sowbug/weblight), you can see at a
-glance if you're currently producing more than you're consuming (🟢) or if
-you're producing less (🔴). If you plug a
+glance if you're currently producing more than you're consuming (WebLight flashes green 🟢) or if
+you're producing less (WebLight flashes red 🔴). If you plug a
 [charge-through hub](https://www.amazon.com/usb-c-hub-pass-through-charging/s?k=usb+c+hub+pass+through+charging)
 into the USB-C port of the Android phone, in theory you should be able to
 connect the WebLight to the phone and keep it charging at the same time, but it
