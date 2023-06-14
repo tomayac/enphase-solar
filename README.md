@@ -32,7 +32,7 @@ you're producing less (WebLight flashes red 🔴). If you plug a
 [charge-through hub](https://www.amazon.com/usb-c-hub-pass-through-charging/s?k=usb+c+hub+pass+through+charging)
 into the USB-C port of the Android phone, in theory you should be able to
 connect the WebLight to the phone and keep it charging at the same time, but it
-somehow would still drain the battery with mine, despite showing the phone is
+somehow would still drain the battery of mine, despite showing the phone is
 charging.
 
 ![WebLight plugged into a USB hub flashing green.](https://github.com/tomayac/enphase-solar/assets/145676/f9bd0dfd-3a98-4d7b-b31e-ca3848256405)
