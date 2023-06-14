@@ -9,8 +9,8 @@ expensive for them to run this.
 
 This project makes the same data available locally as an
 [SSE stream](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events)
-that you can subscribe to and, for example, keep an eye on it in a
-Picture-in-Picture window.
+that you can subscribe to. This means, for example, you can keep an eye on it in
+a Picture-in-Picture window.
 
 ![Enphase Solar running in Picture-in-Picture mode.](https://github.com/tomayac/enphase-solar/assets/145676/ca10dac5-9e7d-4f2c-8f60-56cff458f0ff)
 
