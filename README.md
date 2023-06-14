@@ -1,4 +1,4 @@
-# Enphase Solar
+# Enphase Solar ☀️
 
 The official [Enphase App](https://enphase.com/homeowners/enphase-app) limits
 the arguably coolest feature of the app, the **Live Status** feature, to 15min
