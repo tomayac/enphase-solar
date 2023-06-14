@@ -113,25 +113,23 @@ p {
   stroke: var(--net-color);
 }
 
-.led-red {
-  display: inline-block;
+.led {
+  display: none;
   margin: 0 auto;
   width: 24px;
   height: 24px;
-  background-color: #ff0000;
   border-radius: 50%;
+}
+
+.led-red {
+  background-color: #ff0000;
   box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px,
     rgba(255, 0, 0, 0.5) 0 2px 12px;
   animation: blink-red 1.5s infinite;
 }
 
 .led-green {
-  display: inline-block;
-  margin: 0 auto;
-  width: 24px;
-  height: 24px;
   background-color: #abff00;
-  border-radius: 50%;
   box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #304701 0 -1px 9px,
     #89ff00 0 2px 12px;
   animation: blink-green 1.5s infinite;
