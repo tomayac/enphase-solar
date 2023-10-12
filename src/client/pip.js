@@ -46,3 +46,11 @@ pipButton.addEventListener('click', async () => {
     liveContainer.append(liveSection);
   });
 });
+
+try {
+  navigator.mediaSession.setActionHandler('enterpictureinpicture', () => {
+    pipButton.click();
+  });
+} catch (err) {
+  console.error(err.name, err.message);
+}
