@@ -33,7 +33,7 @@ sqlite3InitModule({
 */
 
 dotenv.config();
-const { USERNAME, PASSWORD, ENVOY_SERIAL, LOCAL_IP, PORT, HOST } = process.env;
+const { USER_NAME, PASSWORD, ENVOY_SERIAL, LOCAL_IP, PORT, HOST } = process.env;
 
 const app = express();
 const sse = new SSE();
@@ -114,4 +114,4 @@ const interval = setInterval(async () => {
   }
 }, 1000);
 
-export { USERNAME, PASSWORD, ENVOY_SERIAL, LOCAL_IP };
+export { USER_NAME, PASSWORD, ENVOY_SERIAL, LOCAL_IP };

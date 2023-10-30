@@ -1,5 +1,5 @@
 LOCAL_IP='192.168.0.123'
-USERNAME='steiner.thomas@gmail.com'
+USER_NAME='steiner.thomas@gmail.com'
 PASSWORD='password'
 ENVOY_SERIAL=123456789
 PORT=3000
