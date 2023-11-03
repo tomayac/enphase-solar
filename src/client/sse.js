@@ -17,6 +17,8 @@ import {
 
 const TREND_HISTORY_LENGTH = 60 * 5;
 
+let baseLoadWatts = 0;
+
 const trendHistory = {
   producing: [],
   consuming: [],
@@ -56,12 +58,16 @@ eventSource.addEventListener('open', (e) => {
 });
 
 let isEven = true;
+let gotBaseLoad = false;
 const trendHistoryKeys = Object.keys(trendHistory);
 eventSource.addEventListener('readings', (e) => {
   isEven = !isEven;
   const data = JSON.parse(e.data);
-  const { producing, net, consuming } = data;
-
+  const { producing, net, consuming, baseLoad } = data;
+  if (!gotBaseLoad) {
+    baseLoadWatts = parseInt(baseLoad, 10);
+    gotBaseLoad = true;
+  }
   trendHistoryKeys.forEach((key) => {
     if (trendHistory[key].length > TREND_HISTORY_LENGTH) {
       trendHistory[key].shift();
@@ -117,7 +123,7 @@ eventSource.addEventListener('readings', (e) => {
   } else {
     exportingOrImportingHeading.textContent = 'Importing';
     gridConsumingAnimation.textContent = '→';
-    if (isEven) {
+    if (isEven && producing >= baseLoadWatts) {
       setWebLightColor && setWebLightColor(64, 0, 0);
     }
   }

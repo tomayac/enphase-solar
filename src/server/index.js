@@ -33,7 +33,7 @@ sqlite3InitModule({
 */
 
 dotenv.config();
-const { USER_NAME, PASSWORD, ENVOY_SERIAL, LOCAL_IP, PORT, HOST } = process.env;
+const { USER_NAME, PASSWORD, ENVOY_SERIAL, BASE_LOAD_WATTS, LOCAL_IP, PORT, HOST } = process.env;
 
 const app = express();
 const sse = new SSE();
@@ -100,6 +100,7 @@ const interval = setInterval(async () => {
               producing,
               net,
               consuming,
+              baseLoad: BASE_LOAD_WATTS,
             },
             'readings',
           );
