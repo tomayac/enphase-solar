@@ -8,7 +8,7 @@
     <link rel="manifest" href="/src/client/manifest.webmanifest" />
     <title>Enphase Solar</title>
     <script>
-      if (!isSecureContext) location.protocol = 'https:';
+      if (location.protocol !== 'https:') location.protocol = 'https:';
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', async () => {
           try {
