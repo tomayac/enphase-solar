@@ -91,9 +91,9 @@ const interval = setInterval(async () => {
           const net = results.readings[1].instantaneousDemand;
           const consuming = producing + net;
           console.log({
-            producing,
-            net,
-            consuming,
+            producing: Math.round(producing),
+            consuming: Math.round(consuming),
+            [net < 0 ? 'exporting' : 'importing']: Math.abs(Math.round(net)),
           });
           sse.send(
             {
