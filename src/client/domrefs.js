@@ -2,13 +2,13 @@ const consumingValue = document.querySelector('.consuming-value');
 const producingValue = document.querySelector('.producing-value');
 const netValue = document.querySelector('.net-value');
 const producingGridAnimation = document.querySelector(
-  '.producing-grid-animation',
+  '.producing-grid-animation svg',
 );
 const gridConsumingAnimation = document.querySelector(
-  '.grid-consuming-animation',
+  '.grid-consuming-animation svg',
 );
 const producingConsumingAnimation = document.querySelector(
-  '.producing-consuming-animation',
+  '.producing-consuming-animation svg',
 );
 const exportingOrImportingHeading = document.querySelector(
   '.exporting-or-importing',

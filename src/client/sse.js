@@ -44,9 +44,6 @@ eventSource.addEventListener('error', (e) => {
   consumingValue.textContent = 'N/A';
   producingValue.textContent = 'N/A';
   netValue.textContent = 'N/A';
-  producingGridAnimation.textContent = '';
-  gridConsumingAnimation.textContent = '';
-  producingConsumingAnimation.textContent = '';
   setWebLightColor && setWebLightColor(0, 0, 0);
   setTimeout(() => {
     window.location.reload();
@@ -103,26 +100,26 @@ eventSource.addEventListener('readings', (e) => {
   }
 
   if (producing > 0 && consuming > 0) {
-    producingConsumingAnimation.textContent = '→';
+    producingConsumingAnimation.style.visibility = 'visible';
   } else {
-    producingConsumingAnimation.textContent = '';
+    producingConsumingAnimation.style.visibility = 'hidden';
   }
 
   if (producing > 0 && net < 0) {
-    producingGridAnimation.textContent = '←';
+    producingGridAnimation.style.visibility = 'visible';
   } else {
-    producingGridAnimation.textContent = '';
+    producingGridAnimation.style.visibility = 'hidden';
   }
 
   if (net < 0) {
     exportingOrImportingHeading.textContent = 'Exporting';
-    gridConsumingAnimation.textContent = '';
+    gridConsumingAnimation.style.visibility = 'hidden';
     if (isEven) {
       setWebLightColor && setWebLightColor(0, 64, 0);
     }
   } else {
     exportingOrImportingHeading.textContent = 'Importing';
-    gridConsumingAnimation.textContent = '→';
+    gridConsumingAnimation.style.visibility = 'visible';
     if (isEven && producing >= baseLoadWatts) {
       setWebLightColor && setWebLightColor(64, 0, 0);
     }

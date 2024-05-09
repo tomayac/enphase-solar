@@ -16,10 +16,10 @@ pipButton.addEventListener('click', async () => {
   const allCSS = [...document.styleSheets]
     .map((styleSheet) => {
       try {
-        return [...styleSheet.cssRules].map((r) => r.cssText).join("");
+        return [...styleSheet.cssRules].map((r) => r.cssText).join('');
       } catch (e) {
-        const link = document.createElement("link");
-        link.rel = "stylesheet";
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
         link.type = styleSheet.type;
         link.media = styleSheet.media;
         link.href = styleSheet.href;
@@ -27,8 +27,8 @@ pipButton.addEventListener('click', async () => {
       }
     })
     .filter(Boolean)
-    .join("\n");
-  const style = document.createElement("style");
+    .join('\n');
+  const style = document.createElement('style');
   style.textContent = allCSS;
   pipWindow.document.head.appendChild(style);
   pipWindow.document.body.append(liveSection);

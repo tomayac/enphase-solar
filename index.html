@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -11,9 +11,8 @@
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', async () => {
           try {
-            const registration = await navigator.serviceWorker.register(
-              '/src/client/sw.js',
-            );
+            const registration =
+              await navigator.serviceWorker.register('/src/client/sw.js');
             console.log(
               'Service worker registered for scope',
               registration.scope,
@@ -32,14 +31,12 @@
   </head>
   <body>
     <main>
-      <h1>Enphase Solar</h1>
       <section class="live-container">
         <div class="live-section">
-          <h2>
-            Live Status <span class="led led-red"></span
+          <h1>
+            Enphase Solar Live Status <span class="led led-red"></span
             ><span class="led led-green"></span>
-          </h2>
-
+          </h1>
           <div class="container">
             <div class="producing">
               <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48">
@@ -95,7 +92,7 @@
                 </g>
               </svg>
               <p class="producing-value">0.000 kW</p>
-              <h3>Producing</h3>
+              <h2>Producing</h2>
               <svg
                 class="sparkline producing-sparkline"
                 width="100"
@@ -136,7 +133,7 @@
                 </defs>
               </svg>
               <p class="net-value">0.000 kW</p>
-              <h3 class="exporting-or-importing">Exporting</h3>
+              <h2 class="exporting-or-importing">Exporting</h2>
               <svg
                 class="sparkline importing-sparkline"
                 width="100"
@@ -151,11 +148,144 @@
               ></svg>
             </div>
 
-            <div class="producing-grid-animation"></div>
+            <div class="producing-grid-animation">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                preserveAspectRatio="xMidYMid meet"
+                style="max-width: 100%; height: auto"
+                viewBox="0 0 100 92"
+              >
+                <g
+                  id="PV_to_Grid"
+                  data-name="PV to Grid"
+                  transform="translate(-172 -207)"
+                >
+                  <rect
+                    id="bg"
+                    width="100"
+                    height="92"
+                    transform="translate(272 299) rotate(180)"
+                    fill="none"
+                    opacity="0.995"
+                  ></rect>
+                  <path
+                    id="motion-path-solar-grid"
+                    data-name="Path 20549"
+                    d="M93,0V75A12,12,0,0,1,81,87H0"
+                    transform="translate(174 207)"
+                    fill="none"
+                    stroke="#01b4de"
+                    stroke-width="1"
+                  ></path>
+                  <path
+                    id="Arrow_head"
+                    d="M4,4.326a.461.461,0,0,1-.089.273L.482,8.624a.243.243,0,0,1-.312.068A.379.379,0,0,1,0,8.363v-8A.359.359,0,0,1,.17.031.254.254,0,0,1,.483.088L3.911,4.064A.423.423,0,0,1,4,4.326Z"
+                    transform="translate(176 298.361) rotate(180)"
+                    fill="#01b4de"
+                  ></path>
+                  <g
+                    id="pointer-solar-grid"
+                    transform="translate(179 212) rotate(180)"
+                  >
+                    <circle
+                      id="Oval_Copy_8"
+                      cx="5"
+                      cy="5"
+                      r="5"
+                      fill="#01b4de"
+                      opacity="0.2"
+                    ></circle>
+                    <circle
+                      id="Oval_Copy_9"
+                      cx="2"
+                      cy="2"
+                      r="2"
+                      transform="translate(3 3)"
+                      fill="#01b4de"
+                    ></circle>
+                  </g>
+                </g>
+                <animateMotion
+                  xlink:href="#pointer-solar-grid"
+                  dur="3s"
+                  begin="0s"
+                  fill="freeze"
+                  repeatCount="indefinite"
+                >
+                  <mpath xlink:href="#motion-path-solar-grid"></mpath>
+                </animateMotion>
+              </svg>
+            </div>
 
-            <div class="producing-consuming-animation"></div>
-
-            <div class="grid-consuming-animation"></div>
+            <div class="producing-consuming-animation">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                preserveAspectRatio="xMidYMid meet"
+                style="max-width: 100%; height: auto"
+                viewBox="0 0 100 92"
+              >
+                <g
+                  id="PV_to_Con"
+                  data-name="PV to Con"
+                  transform="translate(-239 -238)"
+                >
+                  <rect
+                    id="Rectangle_6993"
+                    data-name="Rectangle 6993"
+                    width="99.999"
+                    height="92"
+                    transform="translate(338.999 330) rotate(180)"
+                    fill="none"
+                    opacity="0.995"
+                  ></rect>
+                  <path
+                    id="motion-path-solar-home"
+                    data-name="Path 20550"
+                    d="M0,0V75A12,12,0,0,0,12,87H93"
+                    transform="translate(244 238)"
+                    fill="none"
+                    stroke="#01b4de"
+                    stroke-width="1"
+                  ></path>
+                  <g
+                    id="pointer-solar-home"
+                    transform="translate(249 243) rotate(180)"
+                  >
+                    <circle
+                      id="Oval_Copy_8"
+                      cx="5"
+                      cy="5"
+                      r="5"
+                      fill="#01b4de"
+                      opacity="0.2"
+                    ></circle>
+                    <circle
+                      id="Oval_Copy_9"
+                      cx="2"
+                      cy="2"
+                      r="2"
+                      transform="translate(3 3)"
+                      fill="#01b4de"
+                    ></circle>
+                  </g>
+                  <path
+                    id="Arrow_head"
+                    d="M4,4.031a.4.4,0,0,0-.089-.25L.482.09A.258.258,0,0,0,.17.028.34.34,0,0,0,0,.33V7.669a.323.323,0,0,0,.17.3.27.27,0,0,0,.313-.052L3.911,4.271A.368.368,0,0,0,4,4.031Z"
+                    transform="translate(335 321.002)"
+                    fill="#01b4de"
+                  ></path>
+                </g>
+                <animateMotion
+                  xlink:href="#pointer-solar-home"
+                  dur="3s"
+                  begin="0s"
+                  fill="freeze"
+                  repeatCount="indefinite"
+                >
+                  <mpath xlink:href="#motion-path-solar-home"></mpath>
+                </animateMotion>
+              </svg>
+            </div>
 
             <div class="consuming">
               <svg
@@ -179,13 +309,13 @@
                     stroke="#f37320"
                     stroke-linecap="round"
                     stroke-width=".3"
-                    d="M13.65 29.298a.523.523 0 0 1-.524-.523v-8.554h-2.198a.524.524 0 0 1-.37-.894l9.075-9.076a.523.523 0 0 1 .74 0l9.076 9.076a.524.524 0 0 1-.37.894h-2.2v8.553a.523.523 0 0 1-.524.523Zm12.182-1.047v-8.553a.523.523 0 0 1 .523-.524h1.459l-7.81-7.812-7.812 7.812h1.458a.523.523 0 0 1 .524.524v8.552h3.489v-6.284a.524.524 0 0 1 .524-.524h3.63a.524.524 0 0 1 .523.524v6.283Zm-4.539 0v-5.76h-2.582v5.76Z"
+                    d="M13.65 29.298a.523.523 0 0 1-.524-.523v-8.554h-2.198a.524.524 0 0 1-.37-.894l9.075-9.076a.523.523 0 0 1 .74 0l9.076 9.076a.524.524 0 0 1-.37.894h-2.2v8.553a.523.523 0 0 1-.524.523Zm12.182-1.047v-8.553a.523.523 0 0 1 .523-.524h1.459l-7.81-7.812-7.812 7.812h1.458a.523.523 0 0 1 .524.524v8.552h2.489v-6.284a.524.524 0 0 1 .524-.524h2.63a.524.524 0 0 1 .523.524v6.283Zm-4.539 0v-5.76h-2.582v5.76Z"
                     data-name="home stroke"
                   />
                 </g>
               </svg>
               <p class="consuming-value">0.000 kW</p>
-              <h3>Consuming</h3>
+              <h2>Consuming</h2>
               <svg
                 class="sparkline consuming-sparkline"
                 width="100"
@@ -193,13 +323,88 @@
                 stroke-width="3"
               ></svg>
             </div>
+
+            <div class="grid-consuming-animation">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                preserveAspectRatio="xMidYMid meet"
+                style="max-width: 100%; height: auto"
+                viewBox="0 0 213.001 12"
+              >
+                <g
+                  id="Grid_to_consumption"
+                  data-name="Grid to consumption"
+                  transform="translate(7.001 -0.5)"
+                >
+                  <rect
+                    id="container"
+                    width="213"
+                    height="12"
+                    transform="translate(-7 0.5)"
+                    fill="rgba(255,83,83,0.11)"
+                    opacity="0"
+                  ></rect>
+                  <g id="G_C" data-name="G&gt;C" transform="translate(11 2.5)">
+                    <path
+                      id="motion-path-grid-home"
+                      data-name="arrow body"
+                      d="M57,1,267,.5"
+                      transform="translate(-75 3.499)"
+                      fill="none"
+                      stroke="#6b7073"
+                      stroke-width="1"
+                    ></path>
+                    <path
+                      id="Arrow_head"
+                      data-name="Arrow head"
+                      d="M4,3.969a.4.4,0,0,1-.089.25L.482,7.91a.258.258,0,0,1-.313.063A.34.34,0,0,1,0,7.67V.331a.323.323,0,0,1,.17-.3A.27.27,0,0,1,.482.081L3.911,3.729A.368.368,0,0,1,4,3.969Z"
+                      transform="translate(191 0)"
+                      fill="#6b7073"
+                    ></path>
+                  </g>
+                  <g id="pointer-grid-home" transform="translate(-64 1)">
+                    <circle
+                      id="Oval_Copy_12"
+                      data-name="Oval Copy 12"
+                      cx="5"
+                      cy="5"
+                      r="5"
+                      fill="#6b7073"
+                      opacity="0.2"
+                    ></circle>
+                    <circle
+                      id="Oval_Copy_13"
+                      data-name="Oval Copy 13"
+                      cx="2"
+                      cy="2"
+                      r="2"
+                      transform="translate(3 3)"
+                      fill="#6b7073"
+                    ></circle>
+                  </g>
+                </g>
+                <animateMotion
+                  xlink:href="#pointer-grid-home"
+                  dur="3s"
+                  begin="0s"
+                  fill="freeze"
+                  repeatCount="indefinite"
+                >
+                  <mpath xlink:href="#motion-path-grid-home"></mpath>
+                </animateMotion>
+              </svg>
+            </div>
           </div>
         </div>
       </section>
     </main>
-    <button hidden type="button" class="weblight-button">
-      Connect WebLight
-    </button>
-    <button hidden type="button" class="pip-button">Picture-in-Picture</button>
+    <div>
+      <button hidden type="button" class="weblight-button">
+        Connect WebLight
+      </button>
+      <button hidden type="button" class="pip-button">
+        Picture-in-Picture
+      </button>
+    </div>
   </body>
 </html>
