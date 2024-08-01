@@ -3,6 +3,7 @@ import {
   consumingValue,
   producingValue,
   netValue,
+  container,
   producingGridAnimation,
   gridConsumingAnimation,
   producingConsumingAnimation,
@@ -58,6 +59,7 @@ let isEven = true;
 let gotBaseLoad = false;
 const trendHistoryKeys = Object.keys(trendHistory);
 eventSource.addEventListener('readings', (e) => {
+  container.style.visibility = 'visible';
   isEven = !isEven;
   const data = JSON.parse(e.data);
   const { producing, net, consuming, baseLoad } = data;

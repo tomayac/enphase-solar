@@ -17,13 +17,13 @@
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "node-fetch": "^3.3.2",
-    "plotly.js-dist-min": "^2.32.0",
+    "plotly.js-dist-min": "^2.34.0",
     "ssestream": "^1.1.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.0",
-    "prettier": "^3.2.5",
-    "vite": "^5.2.11",
-    "vite-express": "^0.16.0"
+    "nodemon": "^3.1.4",
+    "prettier": "^3.3.3",
+    "vite": "^5.3.5",
+    "vite-express": "^0.17.0"
   }
 }

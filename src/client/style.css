@@ -27,6 +27,7 @@ body {
 
 .container {
   display: grid;
+  visibility: hidden;
   gap: 0.25rem;
   grid-template-columns: repeat(4, 1fr);
   grid-template-areas:
@@ -68,7 +69,6 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
-  justify-content: center;
   align-items: center;
 }
 

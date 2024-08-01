@@ -15,6 +15,7 @@ const exportingOrImportingHeading = document.querySelector(
 );
 const pipButton = document.querySelector('.pip-button');
 const webLightButton = document.querySelector('.weblight-button');
+const container = document.querySelector('.container');
 const liveContainer = document.querySelector('.live-container');
 const liveSection = document.querySelector('.live-section');
 const producingSparkline = document.querySelector('.producing-sparkline');
@@ -34,6 +35,7 @@ export {
   exportingOrImportingHeading,
   pipButton,
   webLightButton,
+  container,
   liveContainer,
   liveSection,
   producingSparkline,
