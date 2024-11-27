@@ -20,6 +20,11 @@ const {
 const app = express();
 const sse = new SSE();
 
+app.use((req, res, next) => {
+  res.set('ngrok-skip-browser-warning', '!0');
+  next();
+});
+
 app.use(express.static('public'));
 
 app.get('/stream/meter', (req, res) => {
