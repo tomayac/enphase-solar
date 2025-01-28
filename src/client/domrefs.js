@@ -22,6 +22,10 @@ const producingSparkline = document.querySelector('.producing-sparkline');
 const consumingSparkline = document.querySelector('.consuming-sparkline');
 const importingSparkline = document.querySelector('.importing-sparkline');
 const exportingSparkline = document.querySelector('.exporting-sparkline');
+const producingSparklineHourly = document.querySelector('.producing-sparkline-hourly');
+const consumingSparklineHourly = document.querySelector('.consuming-sparkline-hourly');
+const importingSparklineHourly = document.querySelector('.importing-sparkline-hourly');
+const exportingSparklineHourly = document.querySelector('.exporting-sparkline-hourly');
 const ledRed = document.querySelector('.led-red');
 const ledGreen = document.querySelector('.led-green');
 
@@ -42,6 +46,10 @@ export {
   consumingSparkline,
   importingSparkline,
   exportingSparkline,
+  producingSparklineHourly,
+  consumingSparklineHourly,
+  importingSparklineHourly,
+  exportingSparklineHourly,
   ledRed,
   ledGreen,
 };

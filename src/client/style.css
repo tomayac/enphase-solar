@@ -107,17 +107,33 @@ p {
   fill: none;
 }
 
-.producing-sparkline {
+.producing-sparkline,
+.producing-sparkline-hourly {
   stroke: var(--producing-color);
 }
 
-.consuming-sparkline {
+.consuming-sparkline,
+.consuming-sparkline-hourly {
   stroke: var(--consuming-color);
 }
 
 .exporting-sparkline,
-.importing-sparkline {
+.exporting-sparkline-hourly,
+.importing-sparkline,
+.importing-sparkline-hourly {
   stroke: var(--net-color);
+}
+
+.sparkline-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sparkline-label {
+  font-size: 0.8em;
+  color: #666;
+  margin: 0;
 }
 
 .led {

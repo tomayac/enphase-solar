@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon src/server/index.js -w src/server",
-    "start": "npm run dev",
+    "start": "NODE_ENV=production && npm run dev",
     "build": "vite build",
     "fix": "npx prettier . --write"
   },
