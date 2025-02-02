@@ -21,6 +21,7 @@ const app = express();
 const sse = new SSE();
 
 let netProduction = 0;
+let production = 0
 
 app.use((req, res, next) => {
   res.set('ngrok-skip-browser-warning', '!0');
@@ -35,6 +36,10 @@ app.get('/stream/meter', (req, res) => {
 
 app.get("/net-production", (req, res) => {
   res.send(netProduction.toString());
+});
+
+app.get("/production", (req, res) => {
+  res.send(production.toString());
 });
 
 const server = app.listen(PORT, HOST, () =>
@@ -81,6 +86,7 @@ const interval = setInterval(async () => {
       switch (key) {
         case 'readings':
           const producing = results.readings[0].instantaneousDemand;
+          production = Math.floor(producing);
           const net = results.readings[1].instantaneousDemand;
           netProduction = Math.floor(net);
           const consuming = producing + net;
