@@ -20,6 +20,8 @@ const {
 const app = express();
 const sse = new SSE();
 
+let netProduction = 0;
+
 app.use((req, res, next) => {
   res.set('ngrok-skip-browser-warning', '!0');
   next();
@@ -29,6 +31,10 @@ app.use(express.static('public'));
 
 app.get('/stream/meter', (req, res) => {
   sse.init(req, res);
+});
+
+app.get("/net-production", (req, res) => {
+  res.send(netProduction.toString());
 });
 
 const server = app.listen(PORT, HOST, () =>
@@ -76,6 +82,7 @@ const interval = setInterval(async () => {
         case 'readings':
           const producing = results.readings[0].instantaneousDemand;
           const net = results.readings[1].instantaneousDemand;
+          netProduction = Math.floor(net);
           const consuming = producing + net;
           console.log({
             producing: Math.round(producing),
