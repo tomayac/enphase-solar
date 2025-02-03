@@ -20,8 +20,11 @@ const {
 const app = express();
 const sse = new SSE();
 
-let netProduction = 0;
-let production = 0
+const pollingData = {
+  producing: 0,
+  consuming: 0,
+  net: 0,
+};
 
 app.use((req, res, next) => {
   res.set('ngrok-skip-browser-warning', '!0');
@@ -34,12 +37,8 @@ app.get('/stream/meter', (req, res) => {
   sse.init(req, res);
 });
 
-app.get("/net-production", (req, res) => {
-  res.send(netProduction.toString());
-});
-
-app.get("/production", (req, res) => {
-  res.send(production.toString());
+app.get("/polling-data", (req, res) => {
+  res.send(pollingData);
 });
 
 const server = app.listen(PORT, HOST, () =>
@@ -86,15 +85,16 @@ const interval = setInterval(async () => {
       switch (key) {
         case 'readings':
           const producing = results.readings[0].instantaneousDemand;
-          production = Math.floor(producing);
           const net = results.readings[1].instantaneousDemand;
-          netProduction = Math.floor(net);
           const consuming = producing + net;
           console.log({
             producing: Math.round(producing),
             consuming: Math.round(consuming),
             [net < 0 ? 'exporting' : 'importing']: Math.abs(Math.round(net)),
           });
+          pollingData.producing = Math.floor(producing);
+          pollingData.consuming = Math.floor(consuming);
+          pollingData.net = Math.floor(net);
           sse.send(
             {
               producing,
