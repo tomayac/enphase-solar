@@ -15,6 +15,7 @@ const {
   LOCAL_IP,
   PORT,
   HOST,
+  HOME_ASSISTANT_TOKEN,
 } = process.env;
 
 const app = express();
@@ -55,6 +56,29 @@ const endpoints = {
   // consumption: '/ivp/meters/reports/consumption',
 };
 
+async function fetchBalconyData() {
+    try {
+        const response = await fetch('http://192.168.1.111:8123/api/states/sensor.balcony_producing', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${HOME_ASSISTANT_TOKEN}`,
+                'Content-Type': 'application/json'
+            }
+        });
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        let state = Number(data.state);
+        if (isNaN(state)) {
+            state = 0;
+        }
+        return state;
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+}
+
 const interval = setInterval(async () => {
   const promises = [];
   for (const endpoint of Object.values(endpoints)) {
@@ -81,14 +105,18 @@ const interval = setInterval(async () => {
     data.forEach((value, index) => {
       results[keys[index]] = value;
     });
-    keys.forEach((key) => {
+
+    keys.forEach(async (key) => {
       switch (key) {
         case 'readings':
+          const balcony = await fetchBalconyData();
           const producing = results.readings[0].instantaneousDemand;
           const net = results.readings[1].instantaneousDemand;
           const consuming = producing + net;
           console.log({
-            producing: Math.round(producing),
+            total: Math.round(producing + balcony),
+            roof: Math.round(producing),
+            balcony: Math.round(balcony),
             consuming: Math.round(consuming),
             [net < 0 ? 'exporting' : 'importing']: Math.abs(Math.round(net)),
           });
@@ -97,7 +125,7 @@ const interval = setInterval(async () => {
           pollingData.net = Math.floor(net);
           sse.send(
             {
-              producing,
+              producing: producing + balcony,
               net,
               consuming,
               baseLoad: BASE_LOAD_WATTS,
