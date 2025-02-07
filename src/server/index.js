@@ -25,6 +25,8 @@ const pollingData = {
   producing: 0,
   consuming: 0,
   net: 0,
+  roof: 0,
+  balcony: 0,
 };
 
 app.use((req, res, next) => {
@@ -109,23 +111,25 @@ const interval = setInterval(async () => {
     keys.forEach(async (key) => {
       switch (key) {
         case 'readings':
-          const balcony = await fetchBalconyData();
-          const producing = results.readings[0].instantaneousDemand;
+          const balconyProducing = await fetchBalconyData();
+          const roofProducing = results.readings[0].instantaneousDemand;
           const net = results.readings[1].instantaneousDemand;
-          const consuming = producing + net;
+          const consuming = roofProducing + net + balconyProducing;
           console.log({
-            total: Math.round(producing + balcony),
-            roof: Math.round(producing),
-            balcony: Math.round(balcony),
+            total: Math.round(roofProducing + balconyProducing),
+            roof: Math.round(roofProducing),
+            balcony: Math.round(balconyProducing),
             consuming: Math.round(consuming),
             [net < 0 ? 'exporting' : 'importing']: Math.abs(Math.round(net)),
           });
-          pollingData.producing = Math.floor(producing) + Math.floor(balcony);
+          pollingData.producing = Math.floor(roofProducing) + Math.floor(balconyProducing);
           pollingData.consuming = Math.floor(consuming);
           pollingData.net = Math.floor(net);
+          pollingData.roof = Math.floor(roofProducing);
+          pollingData.balcony = Math.floor(balconyProducing);
           sse.send(
             {
-              producing: producing + balcony,
+              producing: roofProducing + balconyProducing,
               net,
               consuming,
               baseLoad: BASE_LOAD_WATTS,
