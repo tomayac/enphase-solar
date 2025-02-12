@@ -78,6 +78,7 @@ async function fetchBalconyData() {
         return state;
     } catch (error) {
         console.error('Error fetching data:', error);
+        return 0;
     }
 }
 
