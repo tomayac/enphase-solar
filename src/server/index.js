@@ -123,11 +123,11 @@ const interval = setInterval(async () => {
             consuming: Math.round(consuming),
             [net < 0 ? 'exporting' : 'importing']: Math.abs(Math.round(net)),
           });
-          pollingData.producing = Math.floor(roofProducing) + Math.floor(balconyProducing);
-          pollingData.consuming = Math.floor(consuming);
-          pollingData.net = Math.floor(net);
-          pollingData.roof = Math.floor(roofProducing);
-          pollingData.balcony = Math.floor(balconyProducing);
+          pollingData.producing = Math.floor(roofProducing) + Math.floor(balconyProducing) || 0;
+          pollingData.consuming = Math.floor(consuming) || 0;
+          pollingData.net = Math.floor(net) || 0;
+          pollingData.roof = Math.floor(roofProducing) || 0;
+          pollingData.balcony = Math.floor(balconyProducing) || 0;
           sse.send(
             {
               producing: roofProducing + balconyProducing,
