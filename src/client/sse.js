@@ -12,7 +12,6 @@ import {
   consumingSparkline,
   importingSparkline,
   exportingSparkline,
-  // Add new DOM references for hourly sparklines
   producingSparklineHourly,
   consumingSparklineHourly,
   importingSparklineHourly,
@@ -177,7 +176,6 @@ eventSource.addEventListener('readings', (e) => {
   sparkline(exportingSparkline, trendHistory.exporting);
   sparkline(importingSparkline, trendHistory.importing);
 
-  // Rest of the visualization logic remains unchanged
   if (producing > consuming) {
     ledGreen.style.display = 'inline-block';
     ledRed.style.display = 'none';
@@ -201,7 +199,7 @@ eventSource.addEventListener('readings', (e) => {
   if (net < 0) {
     exportingOrImportingHeading.textContent = 'Exporting';
     gridConsumingAnimation.style.visibility = 'hidden';
-    if (isEven) {
+    if (isEven && producing >= baseLoadWatts) {
       setWebLightColor && setWebLightColor(0, 64, 0);
     }
   } else {
