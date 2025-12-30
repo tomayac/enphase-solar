@@ -1,5 +1,8 @@
 const consumingValue = document.querySelector('.consuming-value');
 const producingValue = document.querySelector('.producing-value');
+const roofValue = document.querySelector('.roof-value');
+const wallValue = document.querySelector('.wall-value');
+const fenceValue = document.querySelector('.fence-value');
 const netValue = document.querySelector('.net-value');
 const producingGridAnimation = document.querySelector(
   '.producing-grid-animation svg',
@@ -29,6 +32,9 @@ const ledGreen = document.querySelector('.led-green');
 export {
   consumingValue,
   producingValue,
+  roofValue,
+  wallValue,
+  fenceValue,
   netValue,
   producingGridAnimation,
   gridConsumingAnimation,
@@ -43,7 +49,6 @@ export {
   consumingSparkline,
   importingSparkline,
   exportingSparkline,
-
   ledRed,
   ledGreen,
 };

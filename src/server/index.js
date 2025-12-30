@@ -152,6 +152,7 @@ const interval = setInterval(async () => {
               net,
               consuming,
               baseLoad: BASE_LOAD_WATTS,
+              roof: roofProducing,
               balcony: balconyProducing,
               fenceLeft: fenceLeftProducing,
               fenceRight: fenceRightProducing,

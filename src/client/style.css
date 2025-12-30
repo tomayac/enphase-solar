@@ -132,6 +132,31 @@ p {
   margin: 0;
 }
 
+.producing-breakdown {
+  display: flex;
+  gap: 0.75rem;
+  margin-block: 0.25rem;
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+.breakdown-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.2;
+}
+
+.breakdown-label {
+  font-weight: normal;
+  font-size: 0.7em;
+  letter-spacing: 0.05em;
+}
+
+.breakdown-value {
+  font-weight: bold;
+}
+
 .led {
   display: none;
   margin: 0 auto;
@@ -162,6 +187,7 @@ p {
   from {
     background-color: #ff0000;
   }
+
   50% {
     background-color: rgb(81, 3, 10);
     box-shadow:
@@ -169,6 +195,7 @@ p {
       inset #441313 0 -1px 9px,
       rgba(56, 1, 1, 0.5) 0 2px 0;
   }
+
   to {
     background-color: #ff0000;
   }
@@ -178,6 +205,7 @@ p {
   from {
     background-color: #abff00;
   }
+
   50% {
     background-color: rgb(3, 65, 26);
     box-shadow:
@@ -185,6 +213,7 @@ p {
       inset #441313 0 -1px 9px,
       rgba(2, 92, 26, 0.5) 0 2px 0;
   }
+
   to {
     background-color: #abff00;
   }

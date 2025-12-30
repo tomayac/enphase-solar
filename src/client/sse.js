@@ -2,6 +2,9 @@ import sparkline from '@fnando/sparkline';
 import {
   consumingValue,
   producingValue,
+  roofValue,
+  wallValue,
+  fenceValue,
   netValue,
   container,
   producingGridAnimation,
@@ -27,8 +30,6 @@ const trendHistory = {
   importing: [],
 };
 
-
-
 let setWebLightColor = false;
 
 const formatNumber = (number) => {
@@ -38,10 +39,6 @@ const formatNumber = (number) => {
   }
   return `${Math.round(number)} W`;
 };
-
-
-
-
 
 const eventSource = new EventSource('/stream/meter');
 
@@ -87,8 +84,6 @@ eventSource.addEventListener('readings', (e) => {
   trendHistory.producing.push(Math.round(producing));
   trendHistory.consuming.push(Math.round(consuming));
 
-
-
   if (net < 0) {
     const absNet = Math.round(Math.abs(net));
     trendHistory.exporting.push(absNet);
@@ -100,11 +95,12 @@ eventSource.addEventListener('readings', (e) => {
     trendHistory.importing.push(roundedNet);
   }
 
-
-
   // Update values display
   consumingValue.textContent = formatNumber(consuming);
   producingValue.textContent = formatNumber(producing);
+  roofValue.textContent = formatNumber(data.roof);
+  wallValue.textContent = formatNumber(data.balcony);
+  fenceValue.textContent = formatNumber(data.fenceLeft + data.fenceRight);
   netValue.textContent = formatNumber(net);
 
   // Update per-second sparklines
