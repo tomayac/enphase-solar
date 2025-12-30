@@ -91,10 +91,18 @@ const processMinuteData = () => {
     minuteBuffer.timestamp = now;
 
     // Update hourly sparklines
-    hourlyHistory.producing = hourlyHistory.producing.map(num => num === 0 ? 0.00001 : num);
-    hourlyHistory.consuming = hourlyHistory.consuming.map(num => num === 0 ? 0.00001 : num);
-    hourlyHistory.exporting = hourlyHistory.exporting.map(num => num === 0 ? 0.00001 : num);
-    hourlyHistory.importing = hourlyHistory.importing.map(num => num === 0 ? 0.00001 : num);
+    hourlyHistory.producing = hourlyHistory.producing.map((num) =>
+      num === 0 ? 0.00001 : num,
+    );
+    hourlyHistory.consuming = hourlyHistory.consuming.map((num) =>
+      num === 0 ? 0.00001 : num,
+    );
+    hourlyHistory.exporting = hourlyHistory.exporting.map((num) =>
+      num === 0 ? 0.00001 : num,
+    );
+    hourlyHistory.importing = hourlyHistory.importing.map((num) =>
+      num === 0 ? 0.00001 : num,
+    );
     sparkline(producingSparklineHourly, hourlyHistory.producing);
     sparkline(consumingSparklineHourly, hourlyHistory.consuming);
     sparkline(exportingSparklineHourly, hourlyHistory.exporting);
@@ -127,7 +135,9 @@ eventSource.addEventListener('readings', (e) => {
   container.style.visibility = 'visible';
   isEven = !isEven;
   const data = JSON.parse(e.data);
-  const { producing, net, consuming, baseLoad } = data;
+  const { producing, net, consuming, baseLoad, fenceLeft, fenceRight } = data;
+  window.fenceLeft = fenceLeft;
+  window.fenceRight = fenceRight;
   if (!gotBaseLoad) {
     baseLoadWatts = parseInt(baseLoad, 10);
     gotBaseLoad = true;
@@ -152,11 +162,13 @@ eventSource.addEventListener('readings', (e) => {
     const absNet = Math.round(Math.abs(net));
     trendHistory.exporting.push(absNet);
     trendHistory.importing.push(0.00001);
+    trendHistory.importing.push(0.00001);
     minuteBuffer.exporting.push(absNet);
     minuteBuffer.importing.push(0.00001);
   } else {
     const roundedNet = Math.round(net);
     trendHistory.exporting.push(0.00001);
+    trendHistory.importing.push(roundedNet);
     trendHistory.importing.push(roundedNet);
     minuteBuffer.exporting.push(0.00001);
     minuteBuffer.importing.push(roundedNet);

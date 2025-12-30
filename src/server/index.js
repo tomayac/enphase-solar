@@ -27,12 +27,9 @@ const pollingData = {
   net: 0,
   roof: 0,
   balcony: 0,
+  fenceLeft: 0,
+  fenceRight: 0,
 };
-
-app.use((req, res, next) => {
-  res.set('ngrok-skip-browser-warning', '!0');
-  next();
-});
 
 app.use(express.static('public'));
 
@@ -40,7 +37,7 @@ app.get('/stream/meter', (req, res) => {
   sse.init(req, res);
 });
 
-app.get("/polling-data", (req, res) => {
+app.get('/polling-data', (req, res) => {
   res.send(pollingData);
 });
 
@@ -58,28 +55,31 @@ const endpoints = {
   // consumption: '/ivp/meters/reports/consumption',
 };
 
-async function fetchBalconyData() {
-    try {
-        const response = await fetch('http://192.168.1.111:8123/api/states/sensor.balcony_producing', {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${HOME_ASSISTANT_TOKEN}`,
-                'Content-Type': 'application/json'
-            }
-        });
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const data = await response.json();
-        let state = Number(data.state);
-        if (isNaN(state)) {
-            state = 0;
-        }
-        return state;
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        return 0;
+async function fetchHomeAssistantSensor(entityId) {
+  try {
+    const response = await fetch(
+      `http://192.168.1.111:8123/api/states/${entityId}`,
+      {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${HOME_ASSISTANT_TOKEN}`,
+          'Content-Type': 'application/json',
+        },
+      },
+    );
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
     }
+    const data = await response.json();
+    let state = Number(data.state);
+    if (isNaN(state)) {
+      state = 0;
+    }
+    return state;
+  } catch (error) {
+    console.error(`Error fetching data for ${entityId}:`, error);
+    return 0;
+  }
 }
 
 const interval = setInterval(async () => {
@@ -111,33 +111,55 @@ const interval = setInterval(async () => {
 
     keys.forEach(async (key) => {
       switch (key) {
-        case 'readings':
-          const balconyProducing = await fetchBalconyData();
+        case 'readings': {
+          const [balconyProducing, fenceLeftProducing, fenceRightProducing] =
+            await Promise.all([
+              fetchHomeAssistantSensor('sensor.balcony_producing'),
+              fetchHomeAssistantSensor('sensor.inverter_fence_left_power'),
+              fetchHomeAssistantSensor('sensor.inverter_fence_right_power'),
+            ]);
+
           const roofProducing = results.readings[0].instantaneousDemand;
           const net = results.readings[1].instantaneousDemand;
-          const consuming = roofProducing + net + balconyProducing;
+          const totalProducing =
+            roofProducing +
+            balconyProducing +
+            fenceLeftProducing +
+            fenceRightProducing;
+          const consuming = totalProducing + net;
+
           console.log({
-            total: Math.round(roofProducing + balconyProducing),
+            total: Math.round(totalProducing),
             roof: Math.round(roofProducing),
             balcony: Math.round(balconyProducing),
+            fenceLeft: Math.round(fenceLeftProducing),
+            fenceRight: Math.round(fenceRightProducing),
             consuming: Math.round(consuming),
             [net < 0 ? 'exporting' : 'importing']: Math.abs(Math.round(net)),
           });
-          pollingData.producing = Math.floor(roofProducing) + Math.floor(balconyProducing) || 0;
+
+          pollingData.producing = Math.floor(totalProducing) || 0;
           pollingData.consuming = Math.floor(consuming) || 0;
           pollingData.net = Math.floor(net) || 0;
           pollingData.roof = Math.floor(roofProducing) || 0;
           pollingData.balcony = Math.floor(balconyProducing) || 0;
+          pollingData.fenceLeft = Math.floor(fenceLeftProducing) || 0;
+          pollingData.fenceRight = Math.floor(fenceRightProducing) || 0;
+
           sse.send(
             {
-              producing: roofProducing + balconyProducing,
+              producing: totalProducing,
               net,
               consuming,
               baseLoad: BASE_LOAD_WATTS,
+              balcony: balconyProducing,
+              fenceLeft: fenceLeftProducing,
+              fenceRight: fenceRightProducing,
             },
             'readings',
           );
           break;
+        }
         case 'consumption':
           console.log(results.consumption);
           break;

@@ -1,5 +1,5 @@
 export default {
   server: {
-    allowedHosts: ['enphase-solar.strangled.net']
-  }
-}
+    allowedHosts: ['enphase-solar.strangled.net'],
+  },
+};
