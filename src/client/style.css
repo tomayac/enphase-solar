@@ -107,20 +107,16 @@ p {
   fill: none;
 }
 
-.producing-sparkline,
-.producing-sparkline-hourly {
+.producing-sparkline {
   stroke: var(--producing-color);
 }
 
-.consuming-sparkline,
-.consuming-sparkline-hourly {
+.consuming-sparkline {
   stroke: var(--consuming-color);
 }
 
 .exporting-sparkline,
-.exporting-sparkline-hourly,
-.importing-sparkline,
-.importing-sparkline-hourly {
+.importing-sparkline {
   stroke: var(--net-color);
 }
 
