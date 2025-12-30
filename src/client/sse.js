@@ -2,6 +2,7 @@ import sparkline from '@fnando/sparkline';
 import {
   consumingValue,
   producingValue,
+  producingChart,
   roofValue,
   wallValue,
   fenceValue,
@@ -98,9 +99,26 @@ eventSource.addEventListener('readings', (e) => {
   // Update values display
   consumingValue.textContent = formatNumber(consuming);
   producingValue.textContent = formatNumber(producing);
-  roofValue.textContent = formatNumber(data.roof);
-  wallValue.textContent = formatNumber(data.balcony);
-  fenceValue.textContent = formatNumber(data.fenceLeft + data.fenceRight);
+  const roof = data.roof;
+  const wall = data.balcony;
+  const fence = data.fenceLeft + data.fenceRight;
+  const total = producing > 0 ? producing : 1; // Avoid division by zero
+
+  const roofDeg = (roof / total) * 360;
+  const wallDeg = ((roof + wall) / total) * 360;
+  const fenceDeg = ((roof + wall + fence) / total) * 360;
+
+  producingChart.style.setProperty('--roof-deg', `${roofDeg}deg`);
+  producingChart.style.setProperty('--wall-deg', `${wallDeg}deg`);
+  producingChart.style.setProperty('--fence-deg', `${fenceDeg}deg`);
+
+  roofValue.textContent = formatNumber(roof);
+  wallValue.textContent = formatNumber(wall);
+  fenceValue.textContent = formatNumber(fence);
+
+  producingChart.title = `Roof: ${formatNumber(roof)}, Wall: ${formatNumber(
+    wall,
+  )}, Fence: ${formatNumber(fence)}`;
   netValue.textContent = formatNumber(net);
 
   // Update per-second sparklines

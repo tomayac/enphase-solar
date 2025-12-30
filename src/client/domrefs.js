@@ -3,6 +3,7 @@ const producingValue = document.querySelector('.producing-value');
 const roofValue = document.querySelector('.roof-value');
 const wallValue = document.querySelector('.wall-value');
 const fenceValue = document.querySelector('.fence-value');
+const producingChart = document.querySelector('.producing-chart');
 const netValue = document.querySelector('.net-value');
 const producingGridAnimation = document.querySelector(
   '.producing-grid-animation svg',
@@ -32,6 +33,7 @@ const ledGreen = document.querySelector('.led-green');
 export {
   consumingValue,
   producingValue,
+  producingChart,
   roofValue,
   wallValue,
   fenceValue,

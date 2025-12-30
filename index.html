@@ -40,74 +40,88 @@
           </h1>
           <div class="container">
             <div class="producing">
-              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48">
-                <g fill="none" stroke="#01b4de" stroke-width="1.5">
-                  <circle cx="24" cy="24" r="24" stroke="none"></circle>
-                  <circle cx="24" cy="24" r="23.25"></circle>
-                </g>
-                <g fill="rgba(0,0,0,0)" stroke="#01b4de" stroke-width="1.5">
-                  <path
-                    d="M24 30.24A6.24 6.24 0 1 0 17.76 24 6.24 6.24 0 0 0 24 30.24Z"
-                    data-name="Path 12530"
-                  ></path>
-                  <path
-                    stroke-linecap="round"
-                    d="M24 11.521v2.5"
-                    data-name="Path 12531"
-                  ></path>
-                  <path
-                    stroke-linecap="round"
-                    d="M24 33.984v2.5"
-                    data-name="Path 12532"
-                  ></path>
-                  <path
-                    stroke-linecap="round"
-                    d="m32.823 15.177-1.76 1.76"
-                    data-name="Path 12533"
-                  ></path>
-                  <path
-                    stroke-linecap="round"
-                    d="m16.937 31.064-1.76 1.76"
-                    data-name="Path 12534"
-                  ></path>
-                  <path
-                    stroke-linecap="round"
-                    d="M36.48 24h-2.5"
-                    data-name="Path 12535"
-                  ></path>
-                  <path
-                    stroke-linecap="round"
-                    d="M14.015 24h-2.5"
-                    data-name="Path 12536"
-                  ></path>
-                  <path
-                    stroke-linecap="round"
-                    d="m32.823 32.823-1.76-1.76"
-                    data-name="Path 12537"
-                  ></path>
-                  <path
-                    stroke-linecap="round"
-                    d="m16.937 16.937-1.76-1.76"
-                    data-name="Path 12538"
-                  ></path>
-                </g>
-              </svg>
-
-              <p class="producing-value">0.000 kW</p>
-              <div class="producing-breakdown">
-                <div class="breakdown-item">
-                  <span class="breakdown-label">Roof</span>
-                  <span class="breakdown-value roof-value">0 W</span>
-                </div>
-                <div class="breakdown-item">
-                  <span class="breakdown-label">Wall</span>
-                  <span class="breakdown-value wall-value">0 W</span>
-                </div>
-                <div class="breakdown-item">
-                  <span class="breakdown-label">Fence</span>
-                  <span class="breakdown-value fence-value">0 W</span>
+              <div class="producing-top-row">
+                <svg
+                  class="producing-icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="48"
+                  height="48"
+                >
+                  <g fill="none" stroke="#01b4de" stroke-width="1.5">
+                    <circle cx="24" cy="24" r="24" stroke="none"></circle>
+                    <circle cx="24" cy="24" r="23.25"></circle>
+                  </g>
+                  <g fill="rgba(0,0,0,0)" stroke="#01b4de" stroke-width="1.5">
+                    <path
+                      d="M24 30.24A6.24 6.24 0 1 0 17.76 24 6.24 6.24 0 0 0 24 30.24Z"
+                      data-name="Path 12530"
+                    ></path>
+                    <path
+                      stroke-linecap="round"
+                      d="M24 11.521v2.5"
+                      data-name="Path 12531"
+                    ></path>
+                    <path
+                      stroke-linecap="round"
+                      d="M24 33.984v2.5"
+                      data-name="Path 12532"
+                    ></path>
+                    <path
+                      stroke-linecap="round"
+                      d="m32.823 15.177-1.76 1.76"
+                      data-name="Path 12533"
+                    ></path>
+                    <path
+                      stroke-linecap="round"
+                      d="m16.937 31.064-1.76 1.76"
+                      data-name="Path 12534"
+                    ></path>
+                    <path
+                      stroke-linecap="round"
+                      d="M36.48 24h-2.5"
+                      data-name="Path 12535"
+                    ></path>
+                    <path
+                      stroke-linecap="round"
+                      d="M14.015 24h-2.5"
+                      data-name="Path 12536"
+                    ></path>
+                    <path
+                      stroke-linecap="round"
+                      d="m32.823 32.823-1.76-1.76"
+                      data-name="Path 12537"
+                    ></path>
+                    <path
+                      stroke-linecap="round"
+                      d="m16.937 16.937-1.76-1.76"
+                      data-name="Path 12538"
+                    ></path>
+                  </g>
+                </svg>
+                <div
+                  class="producing-chart"
+                  title="Roof: 0 W, Wall: 0 W, Fence: 0 W"
+                ></div>
+                <div class="producing-legend">
+                  <div class="legend-item">
+                    <span class="legend-color roof"></span>
+                    <span class="legend-label">Roof</span>
+                    <span class="legend-value roof-value">0 W</span>
+                  </div>
+                  <div class="legend-item">
+                    <span class="legend-color wall"></span>
+                    <span class="legend-label">Wall</span>
+                    <span class="legend-value wall-value">0 W</span>
+                  </div>
+                  <div class="legend-item">
+                    <span class="legend-color fence"></span>
+                    <span class="legend-label">Fence</span>
+                    <span class="legend-value fence-value">0 W</span>
+                  </div>
                 </div>
               </div>
+
+              <p class="producing-value">0.000 kW</p>
               <h2>Producing</h2>
               <div class="sparkline-container">
                 <p class="sparkline-label">Last 5 minutes</p>
