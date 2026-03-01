@@ -28,6 +28,14 @@ body {
   flex-direction: column;
 }
 
+h1 {
+  font-family:Roboto, Noto, sans-serif;
+  font-size: 24px;
+  color: rgb(225, 225, 225);
+  font-weight: 400;
+  letter-spacing: -0.288px;
+}
+
 .container {
   display: grid;
   visibility: hidden;
