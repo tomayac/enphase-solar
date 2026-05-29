@@ -11,6 +11,8 @@
 html {
   box-sizing: border-box;
   font-family: system-ui, sans-serif;
+  scrollbar-width: none;
+  overflow-y: scroll;
 }
 
 *,
